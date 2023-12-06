@@ -1,9 +1,9 @@
-import UserForm from '../../components/FormComp/UserForm';
+import { Outlet } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
     <div>
-      <UserForm />
+      <Outlet />
     </div>
   );
 };
