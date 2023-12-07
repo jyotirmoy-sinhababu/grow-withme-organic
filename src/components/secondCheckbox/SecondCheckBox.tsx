@@ -9,30 +9,38 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { useState } from 'react';
 
-const FirstCheckBox = () => {
+const SecondCheckBox = () => {
   const [checked, setChecked] = useState([true, false]);
 
   const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([e.target.checked, e.target.checked]);
+    setChecked([e.target.checked, e.target.checked, e.target.checked]);
   };
 
   const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([e.target.checked, checked[1]]);
+    setChecked([e.target.checked, checked[1], checked[2]]);
   };
 
   const handleChange3 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([checked[0], e.target.checked]);
+    setChecked([checked[0], e.target.checked, checked[2]]);
+  };
+
+  const handleChange4 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([checked[0], checked[1], e.target.checked]);
   };
 
   const children = (
     <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
       <FormControlLabel
-        label='support'
+        label='graphic_design'
         control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
       />
       <FormControlLabel
-        label='customer_success'
+        label='product_design'
         control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
+      />
+      <FormControlLabel
+        label='web_design"'
+        control={<Checkbox checked={checked[2]} onChange={handleChange4} />}
       />
     </Box>
   );
@@ -43,11 +51,15 @@ const FirstCheckBox = () => {
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <FormControlLabel
-              label='Customer Service'
+              label='design'
               control={
                 <Checkbox
-                  checked={checked[0] && checked[1]}
-                  indeterminate={checked[0] !== checked[1]}
+                  checked={checked[0] && checked[1] && checked[2]}
+                  indeterminate={
+                    checked[0] !== checked[1] ||
+                    checked[1] !== checked[2] ||
+                    checked[2] !== checked[0]
+                  }
                   onChange={handleChange1}
                 />
               }
@@ -60,4 +72,4 @@ const FirstCheckBox = () => {
   );
 };
 
-export default FirstCheckBox;
+export default SecondCheckBox;

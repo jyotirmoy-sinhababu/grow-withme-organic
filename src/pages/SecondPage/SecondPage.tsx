@@ -1,4 +1,5 @@
 import FirstCheckBox from '../../components/firstCheckbox/FirstCheckBox';
+import SecondCheckBox from '../../components/secondCheckbox/SecondCheckBox';
 import TableComp from '../../components/tableComp/TableComp';
 
 const SecondPage = () => {
@@ -6,6 +7,7 @@ const SecondPage = () => {
     <div>
       <TableComp />
       <FirstCheckBox />
+      <SecondCheckBox />
     </div>
   );
 };
