@@ -21,34 +21,36 @@ const UserForm = () => {
     numErr: '',
   });
 
-  //
+  ////
   const handleChange = (e: any) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
   };
   console.log(inputData);
-  //
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    if (inputData.userName == '' || !/^[a-zA-Z ]+$/.test(inputData.userName)) {
-      setErr({ ...err, nameErr: 'Please write your proper name' });
+
+  ////
+  const handleSubmit = () => {
+    if (inputData.userName == '') {
+      setErr({ ...err, nameErr: 'Required' });
+    } else if (!/^[a-zA-Z ]+$/.test(inputData.userName)) {
+      setErr({ ...err, nameErr: 'Wrong format' });
+    } else if (inputData.userNumber == '') {
+      setErr({ ...err, numErr: 'Number should be 10 digits' });
+    } else if (!/^[0-9]+$/.test(inputData.userNumber)) {
+      setErr({ ...err, numErr: 'Wrong format' });
+    } else if (inputData.userEmail == '') {
+      setErr({ ...err, emailErr: ' Required' });
     } else if (
-      inputData.userNumber == '' ||
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
-        inputData.userNumber
-      )
-    ) {
-      setErr({ ...err, numErr: 'Please write your 10 digit mobile number' });
-    } else if (
-      inputData.userEmail == '' ||
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
         inputData.userEmail
       )
     ) {
-      setErr({ ...err, emailErr: 'Please write proper email address' });
+      setErr({ ...err, emailErr: 'Wrong format' });
     } else {
       localStorage.setItem('data', JSON.stringify(inputData));
+      console.log('done');
     }
   };
+  ////
 
   return (
     <div
@@ -60,7 +62,8 @@ const UserForm = () => {
     >
       <form
         onSubmit={(e) => {
-          handleSubmit(e);
+          e.preventDefault();
+          handleSubmit();
         }}
       >
         <FormControl
@@ -92,7 +95,7 @@ const UserForm = () => {
                 handleChange(e);
               }}
             />
-            {}
+            {err.nameErr && <p>{err.nameErr}</p>}
             <FormLabel sx={{ color: ' hsl(230, 29%, 20%)', fontWeight: '600' }}>
               Enter your phone number.
             </FormLabel>
@@ -109,7 +112,7 @@ const UserForm = () => {
                 handleChange(e);
               }}
             />
-            {}
+            {err.numErr && <p>{err.numErr}</p>}
             <FormLabel sx={{ color: ' hsl(230, 29%, 20%)', fontWeight: '600' }}>
               Enter your email.
             </FormLabel>
@@ -126,7 +129,7 @@ const UserForm = () => {
                 handleChange(e);
               }}
             />
-            {}
+            {err.emailErr && <p>{err.emailErr}</p>}
           </FormGroup>
           <Button
             sx={{
