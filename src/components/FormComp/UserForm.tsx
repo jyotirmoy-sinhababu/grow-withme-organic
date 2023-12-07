@@ -6,6 +6,8 @@ import {
   Button,
 } from '@mui/material';
 
+import { useNavigate } from 'react-router-dom';
+
 import { useState } from 'react';
 
 const UserForm = () => {
@@ -20,6 +22,8 @@ const UserForm = () => {
     emailErr: '',
     numErr: '',
   });
+
+  const navigate = useNavigate();
 
   ////
   const handleChange = (e: any) => {
@@ -47,6 +51,7 @@ const UserForm = () => {
       setErr({ ...err, emailErr: 'Wrong format' });
     } else {
       localStorage.setItem('data', JSON.stringify(inputData));
+      navigate('/sec');
       console.log('done');
     }
   };
