@@ -38,7 +38,7 @@ const FirstCheckBox = () => {
   );
 
   return (
-    <div>
+    <div style={{ width: '500px' }}>
       <div>
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>

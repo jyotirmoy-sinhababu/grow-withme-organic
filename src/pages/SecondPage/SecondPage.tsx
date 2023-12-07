@@ -6,8 +6,18 @@ const SecondPage = () => {
   return (
     <div>
       <TableComp />
-      <FirstCheckBox />
-      <SecondCheckBox />
+      <div
+        style={{
+          display: 'flex',
+          gap: '25px',
+          padding: '4%',
+          flexDirection: 'column',
+        }}
+      >
+        {' '}
+        <FirstCheckBox />
+        <SecondCheckBox />
+      </div>
     </div>
   );
 };
